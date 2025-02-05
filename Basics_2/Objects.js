@@ -11,7 +11,7 @@
 const mySym = Symbol("Key1");
 
 
-// 2.  Literal
+// 2.  Literal (Non singleton)
 const JsUser = {
     name: "Deepak",
     "full name": "Deepak Javalgi",      // We cannot access this value using . operator (console.log(JsUser.full name);). This cannot be done
