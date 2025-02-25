@@ -1,0 +1,52 @@
+<!-- Relations - Traversing between parent and child -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="parent">
+        <!-- this is a comment -->
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent');   // Parent element is selected
+    // console.log(parent);     // We get parent class
+    // console.log(parent.children);    // We get HTML collection
+    // console.log(parent.children[1].innerHTML);      // Tuesday
+
+
+    // Now to use for each loop we need to convert HTML collection into a array. But we can use for loop as it is on HTML collection
+
+    for (let i = 0; i < parent.children.length; i++) {
+         console.log(parent.children[i].innerHTML);     // Mon Tu Wed Th   
+    }
+
+    parent.children[1].style.color = "orange"       // Tuesday is orange color
+
+    // To move from parent to child     ********************** Imp **********************
+
+    console.log(parent.firstElementChild);          // Mon div is output -> Used to get the first child of parent div
+    console.log(parent.lastElementChild);           // Thurday div is output -> Used to get the last child of parent div
+
+    const dayOne = document.querySelector('.day')   // Selects first child of class
+    // console.log(dayOne);     // Monday
+
+    // To move from Child to parent     ********************** Imp **********************
+
+    console.log(dayOne.parentElement);      // Gives us parent element relative to child (Parent)
+    console.log(dayOne.nextElementSibling);      // Gives us next sibling of child (Tuesday)
+    console.log(dayOne.previousElementSibling);   // Gives us previous sibling of child (Null) -> Bcz Parent here is dayOne which is Monday & previous to Monday is Null
+
+
+    console.log("NODES: ", parent.childNodes);      // It is a complex Tree structure, which counts all of it's child nodes as separate child node, including a space, enter, line break and comment
+</script>
+</html>
