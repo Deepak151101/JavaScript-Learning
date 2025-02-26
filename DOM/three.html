@@ -1,0 +1,33 @@
+<!-- How to create a new element using JS -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code </title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    
+</body>
+<script>
+    const div = document.createElement('div');
+    console.log(div);       // <div></div>
+
+    div.className = "main";     // Gives class to div
+    div.id = Math.round(Math.random() * 10 + 1);    // Gives ID to div
+
+    div.setAttribute("title", "generated title");       // Using setAttribute we can give any attribute to the element
+    div.style.backgroundColor = "green";
+    div.style.padding = "12px";
+
+    // Till now the div we created is only in memory & not on page. So to bring it on page-
+
+    // div.innerText = "Chai aur code";     // Not a good practice bcz it overwrites the value
+    const addText = document.createTextNode("Chai aur code");       // So, this is preferred
+    div.appendChild(addText);
+
+    document.body.appendChild(div);     // <div class="main" id="11" title="generated title" style="background-color: green; padding: 12px;">Chai aur code</div>
+</script>
+</html>
