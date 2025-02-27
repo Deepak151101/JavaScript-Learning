@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code | DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    // Write a function using which we can add languages
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`;
+        document.querySelector('.language').appendChild(li);
+    }
+    addLanguage("python");
+    addLanguage("typescript");
+    addLanguage("C++");
+
+    // This is not a optimized approach, as everytime when we are adding a new language we have to traverse the whole DOM tree.
+    // So, optimized way is-
+    
+    function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.language').appendChild(li);
+    }
+    addOptiLanguage('golang');
+
+    //Edit any value Example 1 (Python to Mojo)
+    const secondLang = document.querySelector("li:nth-child(2)")
+    console.log(secondLang);    // <li>Python</> (Now we are editing Python to Mojo)
+    //secondLang.innerHTML = "Mojo";    // This is also one approch but again it is not a optimised approach as InnerHTML would traverse whole DOM tree everytime 
+    // Optimised way-
+    const newli = document.createElement('li');
+    newli.textContent = "Mojo";    // textContent is almost same as InnerHTML.
+    secondLang.replaceWith(newli);    // Used to replace the element (Edit)
+
+    // Edit (JavaScript to Typescript) Example 2-
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>TypeScript</li>';    // Using this we can edit outer html but we shouldn't use this.
+
+    //remove
+    const lastLang = document.querySelector('li:last-child');
+    lastLang.remove();
+
+    // Here we removed golang from the list. It was the last child of li.
+
+</script>
+</html>
