@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Chai aur JavaScript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    const sayDate = function(str){
+        console.log(str, Date.now());
+    }
+
+    let intervalId;         // Declare intervalId outside, so it's accessible by both functions
+
+    document.querySelector('#start').addEventListener('click', function () {
+        if (!intervalId) {          // Check if there is already an interval running
+            intervalId = setInterval(sayDate, 1000, "Deepak");      //Starts an interval every 1000 milliseconds and pass "Deepak" as parameter
+            console.log("Interval Started");
+        }        
+    })
+
+    document.querySelector('#stop').addEventListener('click', function () {
+        if (intervalId) {           // check if an interval has been set
+            clearInterval(intervalId);
+            intervalId = null;      // Reset intervalId
+            console.log("Interval stopped");
+        }
+    })
+
+</script>
+</html>
