@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    0	UNSENT	Client has been created. open() not called yet.<br>
+    1	OPENED	open() has been called.<br>
+    2	HEADERS_RECEIVED	send() has been called, and headers and status are available.<br>
+    3	LOADING	Downloading; responseText holds partial data.<br>
+    4	DONE	The operation is complete.
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary';                  // Good Practice to store hardcoded string in this way
+
+    // Using XMLHttpRequest method we can send and receive data requests
+    const xhr = new XMLHttpRequest();       // We store the XMLHttpRequest in a variable
+    xhr.open('GET', requestUrl)             // Open takes 2 parameters - Method & String
+
+    xhr.onreadystatechange = function(){    // readyState is a property of XMLHttpRequest used to check the status of the request. It takes a function that will be called when the status changes.
+        console.log(xhr.readyState);        // We print all state change stages in this function that's why it is called Asynchronous programming 
+
+        if (xhr.readyState === 4) {
+            // Whenever we get response from URL it is in string format (datatype). We have to Parse it to JSON to convert it into object, so that we can access the data from the received response.
+            const data = JSON.parse(this.responseText)      // this is used bcz we are talking about current context. We store whole object in data
+
+            // console.log(data);           // Gives full object data
+            console.log(typeof data);       // object
+            console.log(data.followers);    // 39909
+        }
+    }
+    xhr.send();         // Initiates the request that you configured using xhr.open(). 
+    // This Initiates the request and starts fetching data. It works asynchronously, meaning it does not block the rest of your JavaScript execution.
+    // When data is received, onreadystatechange fires, and you can process the response
+</script>
+</html>
