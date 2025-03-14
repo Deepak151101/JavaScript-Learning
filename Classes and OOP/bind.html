@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+
+<body>
+    <button>Button Clicked</button>
+</body>
+
+<script>
+    class React {
+        constructor() {
+            this.library = "React";
+            this.server = "https://localhost:3000";
+
+            // Task is to get reference of button and tell us that the button is clicked
+            document
+                .querySelector('button')
+                .addEventListener('click', this.handleClick.bind(this));
+
+        }
+
+        handleClick() {         // Here new reference is created of handleClick
+            console.log("button clicked");
+            console.log(this.server);       // Here we need to bind the new reference of handleClick to this -> We do it by using bind
+        }
+    }
+    const app = new React();        // Creating a object of React class
+</script>
+</html>
