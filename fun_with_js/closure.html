@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+<script>
+    // Lexical Scoping:
+
+    // function init() {
+    //     let name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+    // function outer(){
+    //     let username = "hitesh";
+    //     console.log("OUTER", secret);    // Not Accessible
+    //     function inner(){
+    //         let secret = "my123";
+    // 	       console.log("inner", username);    // Can Access -> Using concept of Lexical Scoping
+    //     }
+    //     function innerTwo(){
+    //         console.log("innerTwo", username);    // Can Access -> Using concept of Lexical Scoping
+    //         console.log(secret);    // Not Accessible
+    //     }
+    //     inner();
+    //     innerTwo();
+    // }
+    // outer();
+    // console.log("TOO OUTER", username);    // Not Accessible
+
+    console.log("--------------");
+
+    // Closure:
+
+    function makeFunc() {
+        const name = "Mozilla";
+        function displayName() {
+            console.log(name);          // This will be executed bcz of Lexical Scoping
+        }
+        return displayName;
+    }
+
+    const myFunc = makeFunc();
+    myFunc();
+
+    // Here according to closure, here when we return displayName on line 53, then only displayName is not given as output but it's outer function i.e makeFunc() is also given as output. This is bcz of displayName() function acts as lexical scope as a whole for the makeFunc() function. So, now we can print name or else name variable would have never printed as it is not accessible. This is closure.
+
+</script>
+<!-- We can add any number of scripts -->
+<script>
+    // document.getElementById("orange").onclick = function(){
+    //     document.body.style.backgroundColor = `orange`
+    // }
+    // document.getElementById("green").onclick = function(){
+    //     document.body.style.backgroundColor = `green`
+    // }
+
+    // This above code is correct no doubt but this is not a good practice in case we had to add 500 buttons. So we do the same task using functions.
+
+    // Real world example of Lexical Scope and Closure 
+
+    function bgclrchanger(color) {
+        // document.body.style.backgroundColor = `${color}`
+
+        return function () {    // We are returning the function using concept of closure
+            document.body.style.backgroundColor = `${color}`;       // We are accessing the parameter of above function using concept of Lexical Scope
+        }
+    }
+
+    document.getElementById('orange').onclick = bgclrchanger("orange");
+    document.getElementById('green').onclick = bgclrchanger("green");
+
+</script>
+
+</html>
